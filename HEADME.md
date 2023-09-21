@@ -3,5 +3,5 @@
 Status do projeto: Em desenvolvimento
 
 ```
-Instalar ....
+Instalando o git : https://git-scm.com/
 ```
