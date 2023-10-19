@@ -1,0 +1,1 @@
+ALTER TABLE pessoa ADD COLUMN telefone varchar(20) AFTER email;	

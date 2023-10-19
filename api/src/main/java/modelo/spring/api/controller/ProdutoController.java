@@ -5,35 +5,48 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import jakarta.validation.Valid;
-import modelo.spring.api.domain.abelha.dto.AbelhaAtualizarRecord;
-import modelo.spring.api.domain.abelha.dto.AbelhaRecord;
-import modelo.spring.api.domain.abelha.dto.DadosDetalhamentoAbelha;
-import modelo.spring.api.domain.abelha.dto.ListaAbelha;
-import modelo.spring.api.domain.abelha.model.AbelhaModel;
-import modelo.spring.api.domain.abelha.repository.AbelhaRepository;
+import modelo.spring.api.domain.produto.dto.ListaProduto;
+import modelo.spring.api.domain.produto.repository.ProdutoRepository;
 
-@RestController				//
-@RequestMapping("abelha")	//
+
+
+@RestController
+@RequestMapping("produto")
 @SecurityRequirement(name = "bearer-key")
-public class AbelhaController {
+public class ProdutoController {
 
-	@Autowired	//
-	private AbelhaRepository repository;
+	@Autowired
+	private ProdutoRepository repository;
 	
+	/*
+	 * 
+	 */
+	
+	@GetMapping
+	public ResponseEntity<Page<ListaProduto>> listar(@PageableDefault(page = 0, size = 5, sort = {"nome"}) Pageable paginacao){
+			
+		var page = repository.findAllByAtivoTrue(paginacao).map(ListaProduto::new);
+		
+		return ResponseEntity.ok(page);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
 	@PostMapping	//
 	@Transactional	//
 	public ResponseEntity cadastrar(@RequestBody @Valid AbelhaRecord dados, UriComponentsBuilder uriBuilder) {
@@ -50,16 +63,7 @@ public class AbelhaController {
 		
 	}
 	
-	@GetMapping // ?size=5&page=1&sort=nome,desc
-	public ResponseEntity<Page<ListaAbelha>> listar(@PageableDefault(page = 0, size = 5, sort = {"nome"}) Pageable paginacao){
-	
-		
-				
-		var page = repository.findAllByAtivoTrue(paginacao).map(ListaAbelha::new);
-		
-		return ResponseEntity.ok(page);
-		
-	}
+
 	
 	@PutMapping
 	@Transactional
@@ -93,5 +97,5 @@ public class AbelhaController {
 		return ResponseEntity.ok(new DadosDetalhamentoAbelha(abelhaModel));
 		
 	}
-	
+	*/
 }
