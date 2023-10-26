@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import modelo.spring.api.domain.pessoa.dto.Pessoas;
+import modelo.spring.api.domain.pessoa.record.PessoaRecord;
 import modelo.spring.api.pessoa.Especialidade;
 
 @Table(name = "pessoas")
@@ -34,7 +34,7 @@ public class PessoaModel {
 	
 	private boolean ativo;
 	
-	public PessoaModel(Pessoas dados) {
+	public PessoaModel(PessoaRecord dados) {
 		
 		this.nome = dados.nome();
 		this.email = dados.email();

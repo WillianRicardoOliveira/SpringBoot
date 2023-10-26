@@ -1,4 +1,4 @@
-package modelo.spring.api.domain.pessoa.dto;
+package modelo.spring.api.domain.pessoa.record;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import modelo.spring.api.endereco.Enderecos;
 import modelo.spring.api.pessoa.Especialidade;
 
-public record Pessoas(
+public record PessoaRecord(
 		
 		@NotBlank // Verifica se nao e null ou vazio (somente STRING)
 		String nome,

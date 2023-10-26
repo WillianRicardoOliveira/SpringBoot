@@ -9,25 +9,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
-import modelo.spring.api.domain.pessoa.dto.Pessoas;
 import modelo.spring.api.domain.pessoa.model.PessoaModel;
+import modelo.spring.api.domain.pessoa.record.PessoaRecord;
 import modelo.spring.api.domain.pessoa.repository.PessoaRepository;
 
 @RestController
-@RequestMapping("pessoas")
+@RequestMapping("pessoa")
 @SecurityRequirement(name = "bearer-key")
 public class PessoaController {
 	
 	@Autowired
-	private PessoaRepository pessoaRepository;
+	private PessoaRepository repository;
 
 	@PostMapping
 	@Transactional
-	public void cadastrar(@RequestBody @Valid Pessoas pessoas) {
-		
-		pessoaRepository.save(new PessoaModel(pessoas));
-		
-		
+	public void cadastrar(@RequestBody @Valid PessoaRecord pessoa) {
+		repository.save(new PessoaModel(pessoa));		
 	}	
 	
 }
